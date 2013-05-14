@@ -15,12 +15,6 @@ class Tests < Test::Unit::TestCase
     assert_equal(nil, response)
   end
 
-  def test_search
-    response = OSMN::search('135 pilkington avenue, birmingham')[0]
-
-    assert_equal('62311100', response.place_id)
-  end
-
   def test_reverse
     response = OSMN::reverse_geocode(52.5487429714954, -1.81602098644987)
 
@@ -28,7 +22,9 @@ class Tests < Test::Unit::TestCase
   end
 
   def test_search
-    response = OSMN::search('135 pilkington avenue, birmingham', 0)[0]
+    response = OSMN::search('135 pilkington avenue, birmingham')[0]
+
+    assert_equal('62311100', response.place_id)
 
     assert_respond_to(response, :place_id)
     assert_respond_to(response, :licence)
